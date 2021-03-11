@@ -1,4 +1,4 @@
-package aitu.oop.finalproject;
+package aitu.oop.finalproject.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,6 +1,6 @@
-package aitu.oop.finalproject;
+package aitu.oop.finalproject.entities;
 
-public class Reservation {
+public class Reservation{
     private int reservation_number;
     private int customer_id;
     private String check_in_date;

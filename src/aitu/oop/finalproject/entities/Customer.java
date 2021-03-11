@@ -1,15 +1,14 @@
-package aitu.oop.finalproject;
+package aitu.oop.finalproject.entities;
 
-public class Customer {
-    private int customer_id;
+public class Customer{
+    private int customerId;
     private String firstname;
     private String lastname;
     private String phonenumber;
     private String country;
     private String city;
 
-    public Customer(int customer_id, String firstname, String lastname, String phonenumber, String country, String city) {
-        this.customer_id = customer_id;
+    public Customer(String firstname, String lastname, String phonenumber, String country, String city) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phonenumber = phonenumber;
@@ -18,7 +17,7 @@ public class Customer {
     }
 
     public int getCustomer_id() {
-        return customer_id;
+        return customerId;
     }
 
     public String getFirstname() {
@@ -64,7 +63,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "customer_id=" + customer_id +
+                "customer_id=" + customerId +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", phonenumber='" + phonenumber + '\'' +

@@ -1,4 +1,4 @@
-package aitu.oop.finalproject;
+package aitu.oop.finalproject.data;
 
 public class PreparedStatementManager {
     public static String getRooms(){

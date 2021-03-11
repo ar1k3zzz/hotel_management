@@ -1,10 +1,13 @@
 package aitu.oop.finalproject;
 
+import aitu.oop.finalproject.data.ConnectionManager;
+import aitu.oop.finalproject.data.PreparedStatementManager;
+import aitu.oop.finalproject.repositories.RoomRepository;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -166,27 +169,18 @@ public class Menu {
                 System.out.println("4. Customer ID (Print `0` if does not exist)");
                 customer_id = scanner.nextInt();
 
-                Connection con = null;
-                Boolean res = null;
-                Statement stmt = null;
-
-                con = ConnectionManager.getConnection();
-                try{
-                    stmt = con.createStatement();
-                    String sql = null;
-                    if(customer_id == 0){
-                        sql = PreparedStatementManager.createRoom(room_number, room_type, number_of_beds);
+                RoomRepository room = new RoomRepository();
+                if(customer_id == 0){
+                    if(room.createRoom(room_number,room_type,number_of_beds)){
+                        System.out.println("Room successfully registered");
                     } else {
-                        sql = PreparedStatementManager.createRoom(room_number, room_type, number_of_beds, customer_id);
+                        System.out.println("Something went wrong");
                     }
-                    res = stmt.execute(sql);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } finally {
-                    try{
-                        con.close();
-                    } catch (SQLException throwables){
-                        throwables.printStackTrace();
+                } else {
+                    if(room.createRoom(room_number,room_type,number_of_beds,customer_id)){
+                        System.out.println("Room successfully registered");
+                    } else {
+                        System.out.println("Something went wrong");
                     }
                 }
             }
@@ -209,27 +203,18 @@ public class Menu {
                 System.out.println("5. Customer ID (Print `0` if does not exist)");
                 customer_id = scanner.nextInt();
 
-                Connection con = null;
-                Boolean res = null;
-                Statement stmt = null;
-
-                con = ConnectionManager.getConnection();
-                try{
-                    stmt = con.createStatement();
-                    String sql = null;
-                    if(customer_id == 0){
-                        sql = PreparedStatementManager.updateRoom(room_id, room_number, room_type, number_of_beds);
+                RoomRepository room = new RoomRepository();
+                if(customer_id == 0){
+                    if(room.updateRoom(room_id,room_number,room_type,number_of_beds)){
+                        System.out.println("Room info successfully updated");
                     } else {
-                        sql = PreparedStatementManager.updateRoom(room_id, room_number, room_type, number_of_beds, customer_id);
+                        System.out.println("Something went wrong");
                     }
-                    res = stmt.execute(sql);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } finally {
-                    try{
-                        con.close();
-                    } catch (SQLException throwables){
-                        throwables.printStackTrace();
+                } else {
+                    if(room.updateRoom(room_id,room_number,room_type,number_of_beds,customer_id)){
+                        System.out.println("Room info successfully updated");
+                    } else {
+                        System.out.println("Something went wrong");
                     }
                 }
             }
@@ -239,23 +224,11 @@ public class Menu {
                 System.out.println("1. Room ID");
                 room_id = scanner.nextInt();
 
-                Connection con = null;
-                Boolean res = null;
-                Statement stmt = null;
-
-                con = ConnectionManager.getConnection();
-                try{
-                    stmt = con.createStatement();
-                    String sql = PreparedStatementManager.deleteRoom(room_id);
-                    res = stmt.execute(sql);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } finally {
-                    try{
-                        con.close();
-                    } catch (SQLException throwables){
-                        throwables.printStackTrace();
-                    }
+                RoomRepository room = new RoomRepository();
+                if(room.deleteRoom(room_id)){
+                    System.out.println("Room was successfully deleted");
+                } else {
+                    System.out.println("Something went wrong");
                 }
             }
             case 6 -> {

@@ -1,13 +1,13 @@
-package aitu.oop.finalproject;
+package aitu.oop.finalproject.entities;
 
-public class Room {
+public class Room{
     private int roomId;
     private int roomNumber;
     private String roomType;
     private int numberOfBeds;
     private int customerId;
 
-    public Room(int roomNumber,String roomType, int numberOfBeds, int customerId) {
+    public Room(int roomNumber, String roomType, int numberOfBeds, int customerId) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.numberOfBeds = numberOfBeds;
@@ -16,6 +16,10 @@ public class Room {
 
     public int getRoomId() {
         return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public int getRoomNumber() {
